@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "nuxt-particles", 
     "@nuxtjs/google-fonts", 
     '@vueuse/motion/nuxt',
+    'v-wave/nuxt',
     
   ],
   colorMode: {
@@ -24,6 +25,9 @@ export default defineNuxtConfig({
 		"Rubik Glitch Pop": true,
 
 	}
+  },
+  vWave: {
+    color: 'rgb(var(--color-primary-DEFAULT) / 1)',
   }
 
 

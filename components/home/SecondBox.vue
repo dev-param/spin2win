@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen h-screen relative overflow-hidden bg-primary-800">
+    <div class="w-screen h-screen relative overflow-hidden bg-primary-600 dark:bg-primary-800">
 
         <div class="">
             <div class="flex flex-col-reverse md:flex-row justify-center md:justify-evenly h-screen items-center ">
@@ -13,7 +13,7 @@
                         Play 1 vs 1
                     </div>
                     <div class="flex justify-center mt-8">
-                        <div
+                        <div v-wave
                             class="bg-gradient-to-tl from-primary-950 to-primary-700 py-3 w-32 text-center rounded-full font-bold shadow-xl">
                             Play
                             now </div>

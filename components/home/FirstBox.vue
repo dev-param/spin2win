@@ -1,10 +1,12 @@
 <template>
 
-    <div
-        class="absolute -top-[50vw] right-[0vw]  w-screen md:-right-[40vw] md:-top-[40vw]   md:w-[80vw] /overflow-hidden">
-        <div v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :delay="200" :duration="1200">
+    <div class="
+        absolute -top-[50vw] right-[0vw]  w-screen overflow-hidden
+        md:-right-[40vw] md:-top-[40vw]   md:w-[80vw] 
+        ">
+        <div v-motion :initial="{ opacity: 0 }" :enter="{ opacity: 1 }" :delay="200">
 
-            <img class="w-full animate-spin [drop-shadow(0_0px_25px_rgba(133,133,133,1))]   " src="/asset/wheel.png"
+            <img class="w-full  animate-spin [drop-shadow(0_0px_25px_rgba(133,133,133,1))]   " src="/asset/wheel.png"
                 alt="wheel">
         </div>
     </div>
