@@ -6,7 +6,7 @@
 
             duration: .4,
 
-        }" :variant="variant" class="capitalize py-2 rounded-3xl px-5" :class="class">
+        }" :variant="variant" class="capitalize py-2 rounded-3xl px-5" :class="class" :loading="loading">
             <slot></slot>
         </UButton>
     </div>
@@ -24,6 +24,7 @@ interface ButtonPropType {
     type?: ButtonTypes,
     size?: ButtonSize,
     class?: string,
+    loading?: boolean
 
 
 }
@@ -34,7 +35,8 @@ interface ButtonPropType {
 const props = withDefaults(defineProps<ButtonPropType>(), {
     variant: "solid",
     type: "button",
-    class: ""
+    class: "",
+    loading: false
 })
 
 </script>

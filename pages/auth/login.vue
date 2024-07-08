@@ -51,16 +51,18 @@
                             :input-attr="{ required: loginData.otpModel }" :label-attr="{ innerText: 'OTP' }" />
 
 
-                        <PButton @click.prevent="() => {
+                        <PButton :loading="loginData.load.submit" @click.prevent="() => {
                             login(false)
                         }">Login</PButton>
 
-                        <PButton @click.prevent="login()" variant="soft"> Back</PButton>
+                        <PButton @click.prevent="() => { loginData.otpModel = false }" variant="soft"> Back
+                        </PButton>
 
                     </div>
                 </div>
             </UModal>
         </form>
+
 
     </div>
 </template>
@@ -69,7 +71,11 @@
 
 <script setup lang="ts">
 import * as vb from 'valibot';
+import { useStorage, useStorageAsync } from '@vueuse/core'
 
+// const d = useAuthDataStore()
+const localState = useStorageAsync('auth', { token: {} })
+const router = useRouter()
 
 const toast = useToast()
 const loginData = reactive({
@@ -79,7 +85,10 @@ const loginData = reactive({
         otp: "",
         rememberMe: true,
     },
-    otpModel: false
+    otpModel: false,
+    load: {
+        submit: false
+    }
 });
 
 
@@ -136,10 +145,12 @@ async function login(sendOtp = true) {
             body: loginData.data,
             watch: false,
             server: false,
-
+            onRequest(req) {
+                loginData.load.submit = true
+            },
             onResponseError({ request, response, options }) {
                 console.log(response._data)
-
+                loginData.load.submit = false
                 toast.add({
                     id: 'login_error',
                     title: response._data.code ?? response.status.toString() ?? "Unexpected Error",
@@ -150,16 +161,16 @@ async function login(sendOtp = true) {
                 })
 
             },
-            onRequestError({ request, options, error }) {
-                console.log("jhgjhj")
-            },
+
 
 
             onResponse({ request, response, options }) {
+                loginData.load.submit = false
                 if (response.status === 200) {
-                    // 
-                    localStorage.setItem("login", JSON.stringify(response._data))
-                    console.log(response._data)
+
+                    localState.value.token = response._data
+                    router.push("/auth/profile/")
+
                 } else if (response.status === 202) {
                     loginData.otpModel = true
 

@@ -13,6 +13,8 @@
     "@nuxt/ui": "^2.15.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@vueuse/motion": "^2.1.0",
+    "jwt-check-expiration": "^1.0.5",
+    "jwt-decode": "^4",
     "nuxt": "^3.11.2",
     "v-wave": "^2.0.0",
     "valibot": "^0.35.0",
