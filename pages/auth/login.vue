@@ -16,7 +16,7 @@
                     <UCheckbox v-model="loginData.data.rememberMe" label="Remember me" />
                     <div class=" flex flex-col items-center gap-6">
 
-                        <PButton @click.prevent="login()">Next</PButton>
+                        <PButton @click.prevent="login()" :loading="loginData.load.submit">Next</PButton>
 
 
                         <NuxtLink to="/auth/forget/">

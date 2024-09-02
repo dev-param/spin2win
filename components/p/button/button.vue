@@ -1,12 +1,14 @@
 <template>
     <div class="">
 
-        <UButton :size="size" :type="type" v-wave="{
-            color: 'rgb(var(--color-primary-DEFAULT) / .9)',
-
-            duration: .4,
-
-        }" :variant="variant" class="capitalize py-2 rounded-3xl px-5" :class="class" :loading="loading">
+        <UButton :size="size" :type="type" :disabled="disabled"
+            v-wave="{ color: 'rgb(var(--color-primary-DEFAULT) )', duration: .6, initialOpacity: .4, dissolveDuration: .3 }"
+            :to="to" :variant="variant" class="capitalize  rounded-3xl " :class="{
+                class: true,
+                'px-4 py-2': icon === '',
+                'p-2': icon
+            }" :loading="loading" :icon="icon" :block="block"
+            :ui="{ variant: { soft: 'dark:bg-primary-900/40 dark:hover:bg-primary-950 dark:text-primary-300' } }">
             <slot></slot>
         </UButton>
     </div>
@@ -24,7 +26,12 @@ interface ButtonPropType {
     type?: ButtonTypes,
     size?: ButtonSize,
     class?: string,
-    loading?: boolean
+    loading?: boolean,
+    icon?: string,
+    to?: string,
+    block?: boolean,
+    disabled?: boolean
+
 
 
 }
@@ -36,7 +43,11 @@ const props = withDefaults(defineProps<ButtonPropType>(), {
     variant: "solid",
     type: "button",
     class: "",
-    loading: false
+    loading: false,
+    icon: "",
+    to: "",
+    block: false,
+    disabled: false
 })
 
 </script>

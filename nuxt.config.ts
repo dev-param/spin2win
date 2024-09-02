@@ -7,6 +7,7 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+
   // ssr: false,
   modules: [
     "@nuxt/ui",
@@ -17,21 +18,28 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
   ],
+
   colorMode: {
-    preference: "blue",
+    preference: "system",
   },
+
   particles: {
     mode: "full",
   },
+
   googleFonts: {
     families: {
       "Bebas Neue": 400,
-      "Rubik Glitch": 400,
-      "Rubik Doodle Triangles": true,
+      Bungee: true,
+      "Ubuntu Mono": [400, 700],
+      "Ubuntu Sans": [100, 200, 300, 400, 500, 600, 700, 800],
       "Rubik Glitch Pop": true,
     },
   },
+
   vWave: {
-    color: "rgb(var(--color-primary-DEFAULT) / 1)",
+    color: "rgb(var(--color-primary-DEFAULT) )",
   },
+
+  compatibilityDate: "2024-08-09",
 });

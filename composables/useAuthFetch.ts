@@ -16,6 +16,7 @@ export default async function <T>(
     server: false,
     headers: {
       Authorization: `Bearer ${SessionData.value.token.access}`,
+      "Content-Type": "application/json",
     },
   };
 
@@ -44,23 +45,27 @@ export default async function <T>(
       if (status.value === "idle") {
         await execute();
       }
-      console.log(status.value);
+
       if (status.value === "error") {
         console.log(error.value);
-
+        navigateTo("/auth/login/");
         throw Error("Auth Token Updating Failed");
       }
       if (status.value === "success") {
         options.headers = {
           Authorization: `Bearer ${SessionData.value.token.access}`,
+          accept: "application/json",
         };
       }
+    } else if (is_access_ex && is_refresh_ex) {
+      console.log("session expired");
+      navigateTo("/auth/login/");
     }
   };
 
   const params = defu(options, defaults);
 
-  return await useFetch(url, params);
+  return useFetch(url, params);
 }
 function isJwtExpired(token: string) {
   if (typeof token !== "string" || !token)
